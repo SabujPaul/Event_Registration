@@ -11,6 +11,8 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib import messages
 from django.urls import reverse
 from rest_framework.filters import SearchFilter
+from django.conf.urls import url
+from rest_framework_swagger.views import get_swagger_view
 
 
 
@@ -112,3 +114,9 @@ class UnregisterFromEventAPIView(generics.DestroyAPIView):
         event.save()
         instance.delete()
         return redirect('registered-events')
+    
+    schema_view = get_swagger_view(title='Pastebin API')
+
+    urlpatterns = [
+         url(r'^$', schema_view)
+    ]
