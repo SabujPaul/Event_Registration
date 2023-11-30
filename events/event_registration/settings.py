@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'events',
     'account',
-    'rest_framework_swagger',
 ]
 
 MIDDLEWARE = [
@@ -73,7 +72,7 @@ TEMPLATES = [
         },
     },
 ]
-REST_FRAMEWORK = { 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' }
+
 WSGI_APPLICATION = 'event_registration.wsgi.application'
 
 

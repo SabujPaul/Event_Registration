@@ -17,18 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from django.views.generic.base import TemplateView
-from rest_framework_swagger.views import get_swagger_view
-
-schema_view = get_swagger_view(title='Pastebin API')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('events.urls')),
     path("account/", include("django.contrib.auth.urls")),
     path('account/', include('account.urls')),
-    path("", TemplateView.as_view(template_name="home.html"), name="home"),
-    path('api-docs/', schema_view)
+    path("", TemplateView.as_view(template_name="home.html"), name="home")
 ]
-
-
 

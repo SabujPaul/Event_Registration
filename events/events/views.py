@@ -15,7 +15,6 @@ from rest_framework.filters import SearchFilter
 
 
 
-
 # class EventListCreateView(generics.ListCreateAPIView):
 #     queryset = Event.objects.all()
 #     serializer_class = EventSerializer
@@ -113,4 +112,3 @@ class UnregisterFromEventAPIView(generics.DestroyAPIView):
         event.save()
         instance.delete()
         return redirect('registered-events')
-
