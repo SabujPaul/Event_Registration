@@ -3,6 +3,10 @@ from django.urls import path, include
 from .views import EventViewSet, book_event, UserRegisteredEventsAPIView, UnregisterFromEventAPIView, eventSearchView
 from rest_framework.routers import DefaultRouter
 from. import views
+from rest_framework_swagger.views import get_swagger_view
+
+schema_view = get_swagger_view(title='Pastebin API')
+
 
 router = DefaultRouter()
 router.register(r'events', EventViewSet, basename='event')
@@ -13,7 +17,7 @@ urlpatterns = [
     path('events/<int:event_id>/book/', book_event, name='book-event'),
     path('registered-events/', UserRegisteredEventsAPIView.as_view(), name='registered-events'),
     path('unregister/<int:pk>/', UnregisterFromEventAPIView.as_view(), name='unregister-from-event'),
-    path('search-event/', views.eventSearchView.as_view({'get': 'list'}), name='search_event')
+    path('search-event/', views.eventSearchView.as_view({'get': 'list'}), name='search_event'),
 
     # path('events/', EventListCreateView.as_view(), name='event-list-create'),
     # path('events/<int:pk>/', EventRetrieveUpdateDestroyView.as_view(), name='event-retrieve-update-destroy'),
