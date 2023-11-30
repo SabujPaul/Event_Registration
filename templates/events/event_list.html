@@ -3,10 +3,11 @@
 
 {% block content %}
   <h1>Event List</h1>
-  <form id="search-form">
+  <form action="{%url 'search_event' %}"id="search-form" method="get">
+    {% csrf_token %}
     <label for="search">Search:</label>
-    <input type="text" id="search" name="search">
-    <button type="button" onclick="searchEvents()">Search</button>
+    <input type="text" id="search" name="q">
+    <button type="submit">Search</button>
 </form>
 <ul id="event-list">
   

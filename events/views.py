@@ -11,7 +11,7 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib import messages
 from django.urls import reverse
 from rest_framework.filters import SearchFilter
-
+from django.views.generic import ListView
 
 
 
@@ -113,4 +113,16 @@ class UnregisterFromEventAPIView(generics.DestroyAPIView):
         event.save()
         instance.delete()
         return redirect('registered-events')
+    
+class eventSearchView(viewsets.ModelViewSet):
+    model = Event
+    template_name = 'event_list.html'
+    context_object_name = 'posts'
+    serializer_class = EventSerializer
+    filter_backends = [SearchFilter]
+    search_fields = ['title', 'description', 'location_name']
 
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        return Event.objects.filter(title__icontains=query).order_by('title')
